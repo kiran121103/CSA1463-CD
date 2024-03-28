@@ -1,0 +1,11 @@
+%option noyywrap
+%{
+#include <stdio.h>
+%}
+%%
+[a-zA-Z][a-zA-Z0-9]* {printf ("Word: %s\n",yytext);}
+">"|"<"|"<="|">="|"=="|"!=" {printf ("Relational Operator: %s\n",yytext);}
+%%
+int main(){
+yylex();
+}
