@@ -1,0 +1,23 @@
+%{
+#include <stdio.h>
+int counter = 0;
+%}
+
+%%
+[a-zA-Z]+ {
+    if (yyleng > counter) {
+        counter = yyleng;
+    }
+}
+%%
+
+int main() {
+    yylex();
+    printf("largest: %d\n", counter);
+    return 0;
+}
+
+// Define yywrap to suppress the linker error
+int yywrap() {
+    return 1;
+}
